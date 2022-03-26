@@ -127,3 +127,32 @@ let mapleader=" "
 " Open the vimrc file anytime
 noremap <LEADER>rc :e $HOME/.config/nvim/init.vim<CR>
 noremap <LEADER>rv :e .nvimrc<CR>
+
+" make Y to copy till the end of the line
+nnoremap Y y$
+
+" Copy to system clipboard
+vnoremap Y "+y
+
+" Indentation
+nnoremap < <<
+nnoremap > >>
+
+" Delete find pair
+"nnoremap dy d%
+
+" Search
+noremap <LEADER><CR> :nohlsearch<CR>
+
+" Adjacent duplicate words (?not getting it)
+noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
+
+" Substitute all Space to Tab
+nnoremap <LEADER>tt :%s/    /\t/g
+vnoremap <LEADER>tt :s/    /\t/g
+
+" Folding
+noremap <silent> <LEADER>o za
+
+" nnoremap <c-n> :tabe<CR>:-tabmove<CR>:term lazynpm<CR>
+
