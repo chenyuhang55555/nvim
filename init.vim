@@ -117,3 +117,13 @@ let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
 tnoremap <C-N> <C-\><C-N>
 tnoremap <C-O> <C-\><C-N><C-O>
+
+" ===
+" === Basic Mappings
+" ===
+" Set <LEADER> as <SPACE>
+let mapleader=" "
+
+" Open the vimrc file anytime
+noremap <LEADER>rc :e $HOME/.config/nvim/init.vim<CR>
+noremap <LEADER>rv :e .nvimrc<CR>
