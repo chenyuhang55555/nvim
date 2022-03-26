@@ -156,3 +156,29 @@ noremap <silent> <LEADER>o za
 
 " nnoremap <c-n> :tabe<CR>:-tabmove<CR>:term lazynpm<CR>
 
+" ===
+" === Cursor Movement
+" ===
+
+" K/J keys for 5 times u/e (faster navigation)
+noremap <silent> K 5k
+noremap <silent> J 5j
+
+" N key: go to the start of the line
+"noremap <silent> N 0
+" I key: go to the end of the line
+"noremap <silent> I $
+
+" Faster in-line navigation
+noremap W 5w
+noremap B 5b
+
+" Ctrl + K or J will move up/down the view port without moving the cursor
+noremap <C-K> 5<C-y>
+noremap <C-J> 5<C-e>
+
+
+"If you use Qwerty keyboard, uncomment the next line.
+source $HOME/nvim/cursor_for_qwerty.vim
+
+
