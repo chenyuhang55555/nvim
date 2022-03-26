@@ -243,4 +243,25 @@ noremap srv <C-w>b<C-w>H
 " Press <SPACE> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>
 
+" ===
+" === Tab management
+" ===
+" Create a new tab with tu
+noremap tk :tabe<CR>
+noremap tK :tab split<CR>
+" Focus around tabs with tn and ti
+noremap th :-tabnext<CR>
+noremap tl :+tabnext<CR>
+" Move the tabs with tmn and tmi
+noremap tmh :-tabmove<CR>
+noremap tml :+tabmove<CR>
+
+
+" ===
+" === Markdown Settings
+" ===
+" Snippets
+source $HOME/.config/nvim/md-snippets.vim
+" auto spell
+autocmd BufRead,BufNewFile *.md setlocal spell
 
