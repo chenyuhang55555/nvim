@@ -64,9 +64,9 @@ set relativenumber
 set cursorline
 set hidden
 set noexpandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set autoindent
 set list
 set listchars=tab:\|\ ,trail:▫
@@ -85,7 +85,9 @@ set splitright
 set splitbelow
 set noshowmode
 set showcmd
-set wildmenu
+"set wildmenu
+"set wildmode=longest:full
+set wildmode=longest,full
 set ignorecase
 set smartcase
 set shortmess+=c
@@ -123,6 +125,10 @@ tnoremap <C-O> <C-\><C-N><C-O>
 " ===
 " Set <LEADER> as <SPACE>
 let mapleader=" "
+
+" Save & quit
+noremap Q :q<CR>
+noremap <C-s> :w<CR>
 
 " Open the vimrc file anytime
 "noremap erc :e $HOME/.config/nvim/init.vim<CR>
@@ -381,15 +387,19 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 
 " Pretty Dress
-Plug 'theniceboy/nvim-deus'
+"Plug 'theniceboy/nvim-deus'
+"Plug 'Iron-E/nvim-highlite'
 "Plug 'arzg/vim-colors-xcode'
+"Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'Th3Whit3Wolf/one-nvim'
+"Plug 'rakr/vim-one'
 
 " Status line
-Plug 'theniceboy/eleline.vim'
+Plug 'liuchengxu/eleline.vim'
 Plug 'ojroques/vim-scrollstatus'
 
 " General Highlighter
-Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+"Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'RRethy/vim-illuminate'
 
 " File navigation
@@ -398,7 +408,7 @@ Plug 'RRethy/vim-illuminate'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-Plug 'kevinhwang91/rnvimr'
+Plug 'kevinhwang91/rnvimr' " ranger
 Plug 'airblade/vim-rooter'
 Plug 'pechorin/any-jump.vim'
 
@@ -471,7 +481,7 @@ Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-p
 Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
 
 " Flutter
-Plug 'dart-lang/dart-vim-plugin'
+"Plug 'dart-lang/dart-vim-plugin'
 
 " Swift
 "Plug 'keith/swift.vim'
@@ -526,7 +536,7 @@ Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 
 " Mini Vim-APP
 "Plug 'jceb/vim-orgmode'
-"Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 
@@ -550,9 +560,6 @@ Plug 'lambdalisue/suda.vim' " do stuff like :sudowrite
 " Plug 'kana/vim-textobj-user'
 " Plug 'roxma/nvim-yarp'
 
-" Color schemes
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'rakr/vim-one'
 
 
 call plug#end()
@@ -575,14 +582,15 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:one_allow_italics = 1
 
 "color dracula
-color one
+colorscheme one-nvim
+"color highlite
 "color deus
 "color gruvbox
 "let ayucolor="light"
 "color ayu
 "color xcodelighthc
 "set background=light
-set background=dark
+"set background=dark
 "set cursorcolumn
 
 "hi NonText ctermfg=gray guifg=grey10
@@ -594,7 +602,7 @@ set background=dark
 " ===
 " === eleline.vim
 " ===
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 
 
 " ==
@@ -752,7 +760,7 @@ let g:table_mode_cell_text_object_i_map = 'k<Bar>'
 " ===
 nnoremap <c-p> :Leaderf file<CR>
 " noremap <silent> <C-p> :Files<CR>
-noremap <silent> <C-f> :Rg<CR>
+"noremap <silent> <C-f> :Rg<CR>
 noremap <silent> <C-h> :History<CR>
 "noremap <C-t> :BTags<CR>
 " noremap <silent> <C-l> :Lines<CR>
@@ -904,11 +912,11 @@ let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
-" function! NearestMethodOrFunction() abort
-" 	return get(b:, 'vista_nearest_method_or_function', '')
-" endfunction
-" set statusline+=%{NearestMethodOrFunction()}
-" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+function! NearestMethodOrFunction() abort
+	return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+set statusline+=%{NearestMethodOrFunction()}
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 let g:scrollstatus_size = 15
 
@@ -916,7 +924,7 @@ let g:scrollstatus_size = 15
 " ===
 " === fzf-gitignore
 " ===
-noremap <LEADER>gi :FzfGitignore<CR>
+" noremap <LEADER>gi :FzfGitignore<CR>
 
 
 " ===
@@ -1208,12 +1216,13 @@ let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 " ===
 nmap s <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
 
 
 " ===
 " === vim-illuminate
 " ===
-let g:Illuminate_delay = 750
+let g:Illuminate_delay = 150
 hi illuminatedWord cterm=undercurl gui=undercurl
 
 
@@ -1239,20 +1248,19 @@ let g:asyncrun_open = 6
 " ===
 " === dart-vim-plugin
 " ===
-let g:dart_style_guide = 2
-let g:dart_format_on_save = 1
-let g:dartfmt_options = ["-l 100"]
+"let g:dart_style_guide = 2
+"let g:dart_format_on_save = 1
+"let g:dartfmt_options = ["-l 100"]
 
 
 " ===
 " === tcomment_vim
 " ===
-nnoremap ci cl
 let g:tcomment_textobject_inlinecomment = ''
-nmap <LEADER>cn g>c
-vmap <LEADER>cn g>
-nmap <LEADER>cu g<c
-vmap <LEADER>cu g<
+" nmap <LEADER>cn g>c
+" vmap <LEADER>cn g>
+" nmap <LEADER>cu g<c
+" vmap <LEADER>cu g<
 
 
 " ===
@@ -1272,13 +1280,13 @@ let g:any_jump_window_height_ratio = 0.9
 " ===
 " === typescript-vim
 " ===
-let g:typescript_ignore_browserwords = 1
+" let g:typescript_ignore_browserwords = 1
 
 
 " ===
 " === Agit
 " ===
-nnoremap <LEADER>gl :Agit<CR>
+nnoremap <LEADER>gi :Agit<CR>
 let g:agit_no_default_mappings = 1
 
 
