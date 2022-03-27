@@ -629,6 +629,7 @@ nnoremap <LEADER>g= :GitGutterNextHunk<CR>
 " === coc.nvim
 " ===
 let g:coc_global_extensions = [
+	\ 'coc-actions',
 	\ 'coc-clangd',
 	\ 'coc-diagnostic',
 	\ 'coc-docker',
@@ -637,7 +638,6 @@ let g:coc_global_extensions = [
 	\ 'coc-gitignore',
 	\ 'coc-import-cost',
 	\ 'coc-java',
-	\ 'coc-jest',
 	\ 'coc-json',
 	\ 'coc-lists',
 	\ 'coc-marketplace',
