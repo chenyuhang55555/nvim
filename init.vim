@@ -187,7 +187,7 @@ nnoremap <C-j> 5<C-e>
 
 
 "If you use Qwerty keyboard, uncomment the next line.
-source $HOME/.config/nvim/cursor_for_qwerty.vim
+" source $HOME/.config/nvim/cursor_for_qwerty.vim
 
 " ===
 " === Insert Mode Cursor Movement
@@ -431,8 +431,9 @@ Plug 'theniceboy/vim-snippets'
 Plug 'mbbill/undotree'
 
 " Git
+Plug 'tpope/vim-fugitive'
 Plug 'theniceboy/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
-Plug 'theniceboy/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
+"Plug 'theniceboy/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
 "Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
 Plug 'cohama/agit.vim'
@@ -641,7 +642,8 @@ let g:coc_global_extensions = [
 	\ 'coc-lists',
 	\ 'coc-marketplace',
 	\ 'coc-prettier',
-	\ 'coc-pyright',
+	\ 'coc-python',
+	\ 'coc-jedi',
 	\ 'coc-snippets',
 	\ 'coc-solidity',
 	\ 'coc-stylelint',
