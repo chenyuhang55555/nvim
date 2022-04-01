@@ -127,8 +127,11 @@ tnoremap <C-O> <C-\><C-N><C-O>
 let mapleader=" "
 
 " Save & quit
-noremap Q :q<CR>
-noremap <C-s> :w<CR>
+map Q :q<CR>
+map <C-s> :w<CR>
+
+" Reload
+"map R :source %MYVIMRC<CR>
 
 " Open the vimrc file anytime
 "noremap erc :e $HOME/.config/nvim/init.vim<CR>
@@ -762,7 +765,7 @@ let g:table_mode_cell_text_object_i_map = 'k<Bar>'
 " ===
 nnoremap <c-p> :Leaderf file<CR>
 " noremap <silent> <C-p> :Files<CR>
-"noremap <silent> <C-f> :Rg<CR>
+noremap <silent> <C-f> :Rg<CR>
 noremap <silent> <C-h> :History<CR>
 "noremap <C-t> :BTags<CR>
 " noremap <silent> <C-l> :Lines<CR>
