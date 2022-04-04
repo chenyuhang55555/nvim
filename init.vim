@@ -740,8 +740,11 @@ let g:snips_author="JC"
 " Use <leader>x for convert visual selected code to snippet
 "xmap <leader>x  <Plug>(coc-convert-snippet)
 
-autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
-autocmd BufWritePre *.py :silent call CocAction('runCommand', 'editor.action.organizeImport')
+" autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+"
+" This funcionality is replaced with both python formatter and
+" coc.preferences.formatOnSaveFiletypes
+" autocmd BufWritePre *.py :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 " ===
 " === vim-instant-markdown

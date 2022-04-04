@@ -68,21 +68,9 @@
 		"$HOME/.config/nvim/Ultisnips/",
 		"$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
 	],
-	"coc.preferences.formatOnSaveFiletypes": [
-		"javascript",
-		"typescript",
-		"html",
-		"css",
-		"json",
-		"java",
-		"python",
-		"vue",
-		"svelte",
-		"c",
-		"cs",
-		"prisma",
-		"markdown"
-	],
+	// format on save not working. seems a bug: https://github.com/neoclide/coc-prettier/issues/38. Use a workaround
+	// "coc.preferences.formatOnSaveFiletypes": ["json", "python", "markdown", "yaml"],
+	"coc.preferences.formatOnSaveFiletypes": ["*"],
 	"yaml.format.enable": true,
 	"signature.target": "float",
 	"yank.enableCompletion": false,
@@ -102,7 +90,7 @@
 	"explorer.file.showHiddenFiles": true,
 	"explorer.icon.enableNerdfont": true,
 	"explorer.git.showIgnored": true,
-	"explorer.file.git.showUntrackedFiles":true,
+	"explorer.file.git.showUntrackedFiles": true,
 	"explorer.keyMappingMode": "none",
 	"explorer.buffer.showHiddenBuffers": false,
 	"explorer.keyMappings.global": {
@@ -152,30 +140,24 @@
 	"pyright.organizeimports.provider": "isort",
 	// "python.sortImports.path": "",
 	"python.sortImports.args": [
-	   "-l",
-       "120",
-       "-m",
-       "3",
-       "--tc",
-       "--up",
-       "--src-path",
-	 "/Users/username/path/to/your/source"
-	 // ...Please list all the other directories of your imported source libraries
-     ],
+		"-l",
+		"120",
+		"-m",
+		"3",
+		"--tc",
+		"--up",
+		"--src-path",
+		"/Users/username/path/to/your/source"
+		// ...Please list all the other directories of your imported source libraries
+	],
 
 	"python.formatting.provider": "black",
-	"python.formatting.blackArgs": [
-        "--line-length",
-        "120"
-    ],
+	"python.formatting.blackArgs": ["--line-length", "120"],
 	"python.linting.enabled": true,
 	"python.linting.lintOnSave": true,
 	"python.linting.flake8Enabled": true,
-    "python.linting.mypyEnabled": true,
-	"python.linting.flake8Args": [
-        "--max-line-length=120",
-        "--ignore=E203,E266,E501,W503"
-    ],
+	"python.linting.mypyEnabled": true,
+	"python.linting.flake8Args": ["--max-line-length=120", "--ignore=E203,E266,E501,W503"],
 	// "python.autoComplete.addBrackets": true,
 	// "python.jediEnabled": true,
 	// "python.formatting.provider": "yapf",
@@ -205,8 +187,8 @@
 		"elixir": ["mix_credo", "mix_credo_compile"],
 		"eelixir": ["mix_credo", "mix_credo_compile"],
 		"php": ["phpstan", "psalm"],
-		"yaml": [ "yamllint" ],
-		"cmake": [ "cmake-lint", "cmakelint" ],
+		"yaml": ["yamllint"],
+		"cmake": ["cmake-lint", "cmakelint"],
 		"systemd": "systemd-analyze"
 	},
 	"diagnostic-languageserver.formatFiletypes": {
