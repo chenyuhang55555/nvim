@@ -72,7 +72,7 @@ set softtabstop=4
 set autoindent
 set list
 set listchars=tab:\|\ ,trail:▫
-set scrolloff=4
+set scrolloff=6
 set ttimeoutlen=0
 set notimeout
 set viewoptions=cursor,folds,slash,unix
@@ -1248,7 +1248,7 @@ let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 " ===
 nmap s <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
-nmap S <plug>(SubversiveSubstituteToEndOfLine)
+" nmap S <plug>(SubversiveSubstituteToEndOfLine)
 
 
 " ===
@@ -1304,7 +1304,7 @@ let g:move_key_modifier = 'C'
 " ===
 " === any-jump
 " ===
-"nnoremap j :AnyJump<CR>
+nnoremap zj :AnyJump<CR>
 let g:any_jump_window_width_ratio  = 0.8
 let g:any_jump_window_height_ratio = 0.9
 
