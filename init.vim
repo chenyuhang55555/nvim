@@ -514,7 +514,7 @@ Plug 'dkarter/bullets.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi'
 Plug 'tomtom/tcomment_vim' " in <space>cn to comment a line
-Plug 'theniceboy/antovim' " gs to switch
+Plug 'theniceboy/antovim' " gs to swap
 Plug 'tpope/vim-surround' " type yskw' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
 Plug 'junegunn/vim-after-object' " da= to delete what's after =
@@ -648,6 +648,7 @@ let g:coc_global_extensions = [
 	\ 'coc-docker',
 	\ 'coc-eslint',
 	\ 'coc-explorer',
+	\ 'coc-git',
 	\ 'coc-gitignore',
 	\ 'coc-import-cost',
 	\ 'coc-java',
@@ -753,6 +754,7 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 let g:snips_author="JC"
+
 " Use <leader>x for convert visual selected code to snippet
 "xmap <leader>x  <Plug>(coc-convert-snippet)
 
@@ -761,6 +763,13 @@ let g:snips_author="JC"
 " This funcionality is replaced with both python formatter and
 " coc.preferences.formatOnSaveFiletypes
 " autocmd BufWritePre *.py :silent call CocAction('runCommand', 'editor.action.organizeImport')
+"
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+" navigate conflicts of current buffer
+nmap [c <Plug>(coc-git-prevconflict)
+nmap ]c <Plug>(coc-git-nextconflict)
 
 " ===
 " === vim-instant-markdown
