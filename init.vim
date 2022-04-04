@@ -269,7 +269,7 @@ noremap tK :tab split<CR>
 " Focus around tabs with tn and ti
 noremap th :-tabnext<CR>
 noremap tl :+tabnext<CR>
-" Move the tabs with tmn and tmi
+" Move the tabs with tlh and tml
 noremap tmh :-tabmove<CR>
 noremap tml :+tabmove<CR>
 
@@ -298,7 +298,7 @@ noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 noremap <LEADER>sc :set spell!<CR>
 
 " Press ` to change case (instead of ~)
-noremap ` ~
+" noremap ` ~
 
 noremap <C-c> zz
 
@@ -479,7 +479,7 @@ Plug 'pantharshit00/vim-prisma'
 " Python
 " Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 "Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
 "Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
 Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
@@ -645,7 +645,7 @@ let g:coc_global_extensions = [
 	\ 'coc-lists',
 	\ 'coc-marketplace',
 	\ 'coc-prettier',
-	\ 'coc-python',
+	\ 'coc-pyright',
 	\ 'coc-jedi',
 	\ 'coc-snippets',
 	\ 'coc-solidity',
@@ -715,6 +715,8 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>aw  <Plug>(coc-codeaction-selected)w
+" xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+" nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 " coctodolist
 " nnoremap <leader>tn :CocCommand todolist.create<CR>
 " nnoremap <leader>tl :CocList todolist<CR>
@@ -739,6 +741,7 @@ let g:snips_author="JC"
 "xmap <leader>x  <Plug>(coc-convert-snippet)
 
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+autocmd BufWritePre *.py :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 " ===
 " === vim-instant-markdown
@@ -864,8 +867,8 @@ let g:VM_maps                       = {}
 "let g:VM_custom_motions             = {'n': 'h', 'i': 'l', 'u': 'k', 'e': 'j', 'N': '0', 'I': '$', 'h': 'e'}
 let g:VM_maps['i']                  = 'k'
 let g:VM_maps['I']                  = 'K'
-let g:VM_maps['Find Under']         = '<C-i>'
-let g:VM_maps['Find Subword Under'] = '<C-i>'
+" let g:VM_maps['Find Under']         = '<C-i>'
+" let g:VM_maps['Find Subword Under'] = '<C-i>'
 let g:VM_maps['Find Next']          = ''
 let g:VM_maps['Find Prev']          = ''
 let g:VM_maps['Remove Region']      = 'q'

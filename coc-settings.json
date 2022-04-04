@@ -3,7 +3,7 @@
 	"coc.preferences.enableFloatHighlight": true,
 	"coc.preferences.snippetStatusText": "Ⓢ ",
 	"coc.preferences.extensionUpdateCheck": "daily",
-	"coc.preferences.messageLevel": "error",
+	"coc.preferences.messageLevel": "more",
 	"coc.source.around.firstMatch": false,
 	"coc.source.buffer.firstMatch": false,
 	"coc.source.syntax.firstMatch": false,
@@ -80,7 +80,8 @@
 		"svelte",
 		"c",
 		"cs",
-		"prisma"
+		"prisma",
+		"markdown"
 	],
 	"yaml.format.enable": true,
 	"signature.target": "float",
@@ -147,14 +148,45 @@
 		"<<": "gitStage",
 		">>": "gitUnstage"
 	},
-	"python.autoComplete.addBrackets": true,
-	"python.jediEnabled": true,
-	"python.formatting.provider": "yapf",
-	"python.formatting.yapfArgs": [
-		"--style",
-		"{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
-	],
+	"pyright.enable": true,
+	"pyright.organizeimports.provider": "isort",
+	// "python.sortImports.path": "",
+	"python.sortImports.args": [
+	   "-l",
+       "120",
+       "-m",
+       "3",
+       "--tc",
+       "--up",
+       "--src-path",
+	 "/Users/username/path/to/your/source"
+	 // ...Please list all the other directories of your imported source libraries
+     ],
+
+	"python.formatting.provider": "black",
+	"python.formatting.blackArgs": [
+        "--line-length",
+        "120"
+    ],
+	"python.linting.enabled": true,
+	"python.linting.lintOnSave": true,
+	"python.linting.flake8Enabled": true,
+    "python.linting.mypyEnabled": true,
+	"python.linting.flake8Args": [
+        "--max-line-length=120",
+        "--ignore=E203,E266,E501,W503"
+    ],
+	// "python.autoComplete.addBrackets": true,
+	// "python.jediEnabled": true,
+	// "python.formatting.provider": "yapf",
+	// "python.formatting.yapfArgs": [
+	// 	"--style",
+	// 	"{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
+	// ],
+	"jedi.enable": true,
+	"jedi.startupMessage": true,
 	"jedi.diagnostics.enable": true,
+	"jedi.jediSettings.autoImportModules": ["numpy", "pandas"],
 	"json.format.enable": true,
 	"eslint.autoFixOnSave": false,
 	"prettier.printWidth": 100,
@@ -172,7 +204,10 @@
 		"sh": "shellcheck",
 		"elixir": ["mix_credo", "mix_credo_compile"],
 		"eelixir": ["mix_credo", "mix_credo_compile"],
-		"php": ["phpstan", "psalm"]
+		"php": ["phpstan", "psalm"],
+		"yaml": [ "yamllint" ],
+		"cmake": [ "cmake-lint", "cmakelint" ],
+		"systemd": "systemd-analyze"
 	},
 	"diagnostic-languageserver.formatFiletypes": {
 		"elixir": "mix_format",
