@@ -74,7 +74,8 @@ set list
 set listchars=tab:\|\ ,trail:▫
 set scrolloff=6
 set ttimeoutlen=0
-set notimeout
+" set notimeout
+set timeoutlen=200
 set viewoptions=cursor,folds,slash,unix
 set wrap
 set tw=0
