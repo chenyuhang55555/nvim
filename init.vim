@@ -199,6 +199,8 @@ nnoremap <C-j> 5<C-e>
 " === Insert Mode Cursor Movement
 " ===
 inoremap <C-a> <ESC>A
+inoremap <C-h> <BS>
+inoremap <C-l> <Del>
 
 
 " ===
@@ -378,6 +380,10 @@ func! CompileRunGcc()
 	endif
 endfunc
 
+" ===
+" === Quick update&upgrade
+" ===
+command! PU PlugUpdate | PlugUpgrade
 
 " ===
 " === Install Plugins with Vim-Plug
@@ -743,7 +749,7 @@ noremap <silent> <leader>ts :CocList tasks<CR>
 
 " coc-snippets
 " Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+imap <C-k> <Plug>(coc-snippets-expand)
 " Use <C-j> for select text for visual placeholder of snippet.
 vmap <C-j> <Plug>(coc-snippets-select)
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
@@ -1256,8 +1262,8 @@ let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 " ===
 " === vim-subversive
 " ===
-nmap s <plug>(SubversiveSubstitute)
-nmap ss <plug>(SubversiveSubstituteLine)
+nmap " <plug>(SubversiveSubstitute)
+nmap "" <plug>(SubversiveSubstituteLine)
 " nmap S <plug>(SubversiveSubstituteToEndOfLine)
 
 
@@ -1523,7 +1529,7 @@ nmap <expr> F reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_F" : "
 nmap <expr> t reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_t" : "t"
 nmap <expr> T reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_T" : "T"
 " autocmd BufEnter * map <buffer> <nowait> { <Plug>Lightspeed_S
-map <nowait> " <Plug>Lightspeed_omni_s
+map <nowait> s <Plug>Lightspeed_omni_s
 if g:nvim_plugins_installation_completed == 1
 lua <<EOF
 require'lightspeed'.setup {
@@ -1537,7 +1543,7 @@ require'lightspeed'.setup {
   -- substitute_chars = { ['\r'] = '¬', },
   -- -- Leaving the appropriate list empty effectively disables "smart" mode,
   -- -- and forces auto-jump to be on or off.
-  safe_labels= {"a", "r", "s", "t", "n", "e", "i", "o", "w", "f", "u", "y", "x", 'c', "v", "k", "m"},
+  safe_labels= { "n", "u", "s", "t", "h", "j", "l", "o", "w", "f", "e", "k", "y", "v", "/", "F", "L", "N", "H", "G", "M", "U", "T", "?", "Z"},
   -- labels = {},
   special_keys = {
     next_match_group = '<space>',
