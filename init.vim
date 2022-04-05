@@ -1332,6 +1332,21 @@ let g:any_jump_window_height_ratio = 0.9
 
 
 " ===
+" === vim-startify
+" ===
+let g:startify_session_dir = '~/.config/nvim/session'
+let g:startify_bookmarks = []
+let g:startify_custom_header =
+	\ startify#pad(split(system('figlet -w 100 JC2022'), '\n'))
+let g:startify_lists = [
+	  \ { 'type': 'sessions',  'header': ['   Sessions']       },
+	  \ { 'type': 'files',     'header': ['   MRU']            },
+	  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+	  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+	  \ { 'type': 'commands',  'header': ['   Commands']       },
+	  \ ]
+
+" ===
 " === Agit
 " ===
 nnoremap <LEADER>gi :Agit<CR>
