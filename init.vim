@@ -244,10 +244,10 @@ noremap qo <C-w>o
 noremap s <nop>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-noremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap sj :set splitbelow<CR>:split<CR>
-noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-noremap sl :set splitright<CR>:vsplit<CR>
+noremap "k :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap "j :set splitbelow<CR>:split<CR>
+noremap "h :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap "l :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
 noremap <up> :res +5<CR>
@@ -256,13 +256,13 @@ noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
 
 " Place the two screens up and down
-noremap sth <C-w>t<C-w>K
+noremap "th <C-w>t<C-w>K
 " Place the two screens side by side
-noremap stv <C-w>t<C-w>H
+noremap "tv <C-w>t<C-w>H
 
 " Rotate screens
-noremap srh <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
+noremap "rh <C-w>b<C-w>K
+noremap "rv <C-w>b<C-w>H
 
 " Press <SPACE> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>
@@ -1204,6 +1204,16 @@ cnoreabbrev sw w suda://%
 " === vimspector
 " ===
 " let g:vimspector_enable_mappings = 'HUMAN'
+"
+fun! GotoWindow(id)
+  :call win_gotoid(a:id)
+endfun
+func! AddToWatch()
+  let word = expand("<cexpr>")
+  call vimspector#AddWatch(word)
+endfunction
+nnoremap <leader>da :call AddToWatch()<CR>
+
 nnoremap <Leader>dd :call vimspector#Launch()<CR>
 nnoremap <Leader>dq :call vimspector#Reset()<CR>
 
@@ -1229,9 +1239,9 @@ nnoremap <Leader>dl :call vimspector#Continue()<CR>
 nnoremap <leader>dr :call vimspector#RunToCursor()<CR>
 
 " for normal mode - the word under the cursor
-nmap <Leader>db <Plug>VimspectorBalloonEval
+nmap <Leader>di <Plug>VimspectorBalloonEval
 " for visual mode, the visually selected text
-xmap <Leader>db <Plug>VimspectorBalloonEval
+xmap <Leader>di <Plug>VimspectorBalloonEval
 
 function! s:read_template_into_buffer(template)
 	" has to be a function to avoid the extra space fzf#run insers otherwise
