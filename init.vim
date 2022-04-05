@@ -59,6 +59,8 @@ set autochdir
 " ===
 " === Editor behavior
 " ===
+set encoding=utf-8
+set fileencoding=utf-8
 set exrc
 set secure
 set number
@@ -75,7 +77,7 @@ set listchars=tab:\|\ ,trail:▫
 set scrolloff=6
 set ttimeoutlen=0
 " set notimeout
-set timeoutlen=200
+set timeoutlen=400
 set viewoptions=cursor,folds,slash,unix
 set wrap
 set tw=0
@@ -393,6 +395,7 @@ call plug#begin('$HOME/.config/nvim/plugged')
 
 " Plug 'LoricAndre/fzterm.nvim'
 
+Plug 'mechatroner/rainbow_csv'
 Plug 'ggandor/lightspeed.nvim'
 Plug 'ibhagwan/fzf-lua'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -434,7 +437,7 @@ Plug 'pechorin/any-jump.vim'
 " Plug 'liuchengxu/vista.vim'
 
 " Debugger
-" Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-python'}
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -701,7 +704,7 @@ nnoremap <LEADER>h :call Show_documentation()<CR>
 " let $NVIM_COC_LOG_LEVEL = 'debug'
 " let $NVIM_COC_LOG_FILE = '/Users/david/Desktop/log.txt'
 
-nnoremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
+nnoremap <silent><nowait> <LEADER>dg :CocList diagnostics<cr>
 nmap <silent> <LEADER>- <Plug>(coc-diagnostic-prev)
 nmap <silent> <LEADER>= <Plug>(coc-diagnostic-next)
 nnoremap <c-c> :CocCommand<CR>
@@ -1200,7 +1203,36 @@ cnoreabbrev sw w suda://%
 " ===
 " === vimspector
 " ===
-let g:vimspector_enable_mappings = 'HUMAN'
+" let g:vimspector_enable_mappings = 'HUMAN'
+nnoremap <Leader>dd :call vimspector#Launch()<CR>
+nnoremap <Leader>dq :call vimspector#Reset()<CR>
+
+nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+
+nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <Leader>dT :call vimspector#ToggleConditionalBreakpoint()<CR>
+nnoremap <Leader>dp :call vimspector#ClearBreakpoints()<CR>
+
+" nnoremap - <Plug>VimspectorStepOut
+" nnoremap + <Plug>VimspectorStepInto
+" nnoremap = <Plug>VimspectorStepOver
+" nnoremap <Leader>dR <Plug>VimspectorRestart
+nnoremap - :call vimspector#StepOut()<CR>
+nnoremap + :call vimspector#StepInto()<CR>
+nnoremap = :call vimspector#StepOver()<CR>
+nnoremap <Leader>dR :call vimspector#Restart()<CR>
+nnoremap <Leader>dl :call vimspector#Continue()<CR>
+nnoremap <leader>dr :call vimspector#RunToCursor()<CR>
+
+" for normal mode - the word under the cursor
+nmap <Leader>db <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>db <Plug>VimspectorBalloonEval
+
 function! s:read_template_into_buffer(template)
 	" has to be a function to avoid the extra space fzf#run insers otherwise
 	execute '0r ~/.config/nvim/sample_vimspector_json/'.a:template
@@ -1396,10 +1428,10 @@ endif
 " ===
 " === nvim-hlslens
 " ===
-noremap <silent> = <Cmd>execute('normal! ' . v:count1 . 'n')<CR>
-            \<Cmd>lua require('hlslens').start()<CR>
-noremap <silent> - <Cmd>execute('normal! ' . v:count1 . 'N')<CR>
-            \<Cmd>lua require('hlslens').start()<CR>
+" noremap <silent> = <Cmd>execute('normal! ' . v:count1 . 'n')<CR>
+"             \<Cmd>lua require('hlslens').start()<CR>
+" noremap <silent> - <Cmd>execute('normal! ' . v:count1 . 'N')<CR>
+"             \<Cmd>lua require('hlslens').start()<CR>
 noremap * *<Cmd>lua require('hlslens').start()<CR>
 noremap # #<Cmd>lua require('hlslens').start()<CR>
 noremap g* g*<Cmd>lua require('hlslens').start()<CR>
