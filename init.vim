@@ -542,6 +542,7 @@ Plug 'theniceboy/pair-maker.vim'
 Plug 'theniceboy/vim-move'
 " Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'Yggdroot/indentLine'
+Plug 'liuchengxu/vim-which-key'
 
 " For general writing
 Plug 'junegunn/goyo.vim'
@@ -1617,6 +1618,14 @@ endif
 "
 vnoremap <LEADER>Y :OSCYank<CR>
 autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | silent! execute 'OSCYankReg "' | endif
+
+
+"
+" vim-which-key
+"
+let g:mapleader = "\<Space>"
+nnoremap <silent> <LEADER> :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> " :<c-u>WhichKey '"'<CR>
 
 " ===================== End of Plugin Settings =====================
 
