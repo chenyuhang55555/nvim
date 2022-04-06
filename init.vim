@@ -399,6 +399,7 @@ Plug 'mechatroner/rainbow_csv'
 Plug 'ggandor/lightspeed.nvim'
 Plug 'ibhagwan/fzf-lua'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -1222,6 +1223,7 @@ nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
 nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
 nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
 nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+nnoremap <leader>de :call GotoWindow(g:vimspector_session_windows.terminal)<CR>
 
 nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
 nnoremap <Leader>dT :call vimspector#ToggleConditionalBreakpoint()<CR>
@@ -1590,25 +1592,31 @@ map <nowait> s <Plug>Lightspeed_omni_s
 if g:nvim_plugins_installation_completed == 1
 lua <<EOF
 require'lightspeed'.setup {
-  ignore_case = true,
-  -- exit_after_idle_msecs = { unlabeled = 1000, labeled = nil },
-  -- --- s/x ---
-  -- jump_to_unique_chars = { safety_timeout = 400 },
-  -- match_only_the_start_of_same_char_seqs = true,
-  force_beacons_into_match_width = true,
-  -- -- Display characters in a custom way in the highlighted matches.
-  -- substitute_chars = { ['\r'] = '¬', },
-  -- -- Leaving the appropriate list empty effectively disables "smart" mode,
-  -- -- and forces auto-jump to be on or off.
-  safe_labels= { "n", "u", "s", "t", "h", "j", "l", "o", "w", "f", "e", "k", "y", "v", "/", "F", "L", "N", "H", "G", "M", "U", "T", "?", "Z"},
-  -- labels = {},
-  special_keys = {
-    next_match_group = '<space>',
-    prev_match_group = '<tab>',
-  },
+	ignore_case = true,
+	-- exit_after_idle_msecs = { unlabeled = 1000, labeled = nil },
+	-- --- s/x ---
+	-- jump_to_unique_chars = { safety_timeout = 400 },
+	-- match_only_the_start_of_same_char_seqs = true,
+	force_beacons_into_match_width = true,
+	-- -- Display characters in a custom way in the highlighted matches.
+	-- substitute_chars = { ['\r'] = '¬', },
+	-- -- Leaving the appropriate list empty effectively disables "smart" mode,
+	-- -- and forces auto-jump to be on or off.
+	safe_labels= { "n", "u", "s", "t", "h", "j", "l", "o", "w", "f", "e", "k", "y", "v", "/", "F", "L", "N", "H", "G", "M", "U", "T", "?", "Z"},
+	-- labels = {},
+	special_keys = {
+	next_match_group = '<space>',
+	prev_match_group = '<tab>',
+	},
 }
 EOF
 endif
+
+"
+" vim-oscyank
+"
+vnoremap <LEADER>Y :OSCYank<CR>
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | silent! execute 'OSCYankReg "' | endif
 
 " ===================== End of Plugin Settings =====================
 
