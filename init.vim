@@ -190,8 +190,8 @@ noremap W 5w
 noremap B 5b
 
 " Ctrl + K or J will move up/down the view port without moving the cursor
-nnoremap <C-k> 5<C-y>
-nnoremap <C-j> 5<C-e>
+" nnoremap <C-k> 5<C-y>
+" nnoremap <C-j> 5<C-e>
 
 
 "If you use Qwerty keyboard, uncomment the next line.
@@ -232,12 +232,13 @@ cnoremap kj <Esc>
 " ===
 " === Window management
 " ===
+" map <C-l> <nop>
 " Use <space> + new arrow keys for moving the cursor around windows
 noremap <LEADER>w <C-w>w
-noremap <LEADER>k <C-w>k
-noremap <LEADER>j <C-w>j
-noremap <LEADER>n <C-w>h
-noremap <LEADER>l <C-w>l
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
 noremap qo <C-w>o
 
 " Disable the default s key
@@ -530,7 +531,7 @@ Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or 
 Plug 'junegunn/vim-after-object' " da= to delete what's after =
 Plug 'godlygeek/tabular' " ga, or :Tabularize <regex> to align
 Plug 'tpope/vim-capslock'	" Ctrl+L (insert) to toggle capslock
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 " Plug 'Konfekt/FastFold'
 Plug 'junegunn/vim-peekaboo'
 "Plug 'wellle/context.vim'
@@ -539,7 +540,7 @@ Plug 'theniceboy/argtextobj.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'theniceboy/pair-maker.vim'
-Plug 'theniceboy/vim-move'
+" Plug 'theniceboy/vim-move'
 " Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'Yggdroot/indentLine'
 Plug 'liuchengxu/vim-which-key'
@@ -1365,7 +1366,7 @@ let g:move_key_modifier = 'C'
 " ===
 " === any-jump
 " ===
-nnoremap zj :AnyJump<CR>
+" nnoremap zj :AnyJump<CR>
 let g:any_jump_window_width_ratio  = 0.8
 let g:any_jump_window_height_ratio = 0.9
 
@@ -1456,7 +1457,7 @@ noremap g# g#<Cmd>lua require('hlslens').start()<CR>
 " ===
 noremap <silent> <C-p> :FzfLua files<CR>
 noremap <silent> <C-f> :Rg<CR>
-noremap <silent> <C-h> :FzfLua oldfiles cwd=~<CR>
+noremap <silent> <C-u> :FzfLua oldfiles cwd=~<CR>
 noremap <silent> <C-q> :FzfLua builtin<CR>
 noremap <silent> <C-t> :FzfLua lines<CR>
 " noremap <silent> <C-x> :FzfLua resume<CR>
