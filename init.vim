@@ -496,7 +496,7 @@ Plug 'pantharshit00/vim-prisma'
 "Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 
 " Python
-" Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
+Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 "Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
