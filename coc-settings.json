@@ -106,6 +106,7 @@
 		"o": ["wait", "expanded?", "collapse", "expand"],
 		"O": "open:tab",
 		"h": "collapse",
+		"d": "delete",
 		// "l": "gotoParent",
 		"l": ["wait", "expandable?", "expand", "open"],
 		"yp": "copyFilepath",
