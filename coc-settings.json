@@ -108,6 +108,7 @@
 		"h": "collapse",
 		"d": "delete",
 		// "l": "gotoParent",
+		"gp": "gotoParent",
 		"l": ["wait", "expandable?", "expand", "open"],
 		"yp": "copyFilepath",
 		"yn": "copyFilename",
