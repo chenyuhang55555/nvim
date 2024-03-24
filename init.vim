@@ -1,4 +1,4 @@
-" __  ____   __  _   ___     _____ __  __ ____   ____
+"lazygit_floating_window_corner_chars __  ____   __  _   ___     _____ __  __ ____   ____
 "|  \/  \ \ / / | \ | \ \   / /_ _|  \/  |  _ \ / ___|
 "| |\/| |\ V /  |  \| |\ \ / / | || |\/| | |_) | |
 "| |  | | | |   | |\  | \ V /  | || |  | |  _ <| |___
@@ -403,8 +403,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
 " Treesitter
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'petertriho/nvim-scrollbar'
 Plug 'kevinhwang91/nvim-hlslens'
@@ -671,7 +670,6 @@ let g:coc_global_extensions = [
 	\ 'coc-pyright',
 	\ 'coc-jedi',
 	\ 'coc-snippets',
-	\ 'coc-solidity',
 	\ 'coc-stylelint',
 	\ 'coc-syntax',
 	\ 'coc-tasks',
@@ -1409,7 +1407,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {"java", "c", "bash", "python"},
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { "rust" },  -- list of language that will be disabled
+    disable = { "vim", "rust" },  -- list of language that will be disabled
   },
 }
 EOF
@@ -1484,7 +1482,6 @@ require'fzf-lua'.setup {
 		vertical       = 'down:45%',      -- up|down:size
 		horizontal     = 'right:60%',     -- right|left:size
 		hidden         = 'nohidden',
-		title = true,
 	},
 	keymap = {
 		-- These override the default tables completely
@@ -1579,7 +1576,7 @@ endif
 noremap <c-g> :LazyGit<CR>
 let g:lazygit_floating_window_winblend = 0 " transparency of floating window
 let g:lazygit_floating_window_scaling_factor = 1.0 " scaling factor for floating window
-let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
+let g:lazygit_floating_window_border_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
 let g:lazygit_use_neovim_remote = 1 " for neovim-remote support
 
 " ===
@@ -1617,8 +1614,17 @@ endif
 "
 " vim-oscyank
 "
-vnoremap <LEADER>Y :OSCYank<CR>
-autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | silent! execute 'OSCYankReg "' | endif
+vnoremap <LEADER>Y :OSCYankVisual<CR>
+let s:VimOSCYankPostRegisters = ['', '+', '*']
+function! s:VimOSCYankPostCallback(event)
+    if a:event.operator == 'y' && index(s:VimOSCYankPostRegisters, a:event.regname) != -1
+        call OSCYankRegister(a:event.regname)
+    endif
+endfunction
+augroup VimOSCYankPost
+    autocmd!
+    autocmd TextYankPost * call s:VimOSCYankPostCallback(v:event)
+augroup END
 
 
 "
