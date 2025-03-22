@@ -580,6 +580,7 @@ Plug 'lambdalisue/suda.vim' " do stuff like :sudowrite
 " Plug 'makerj/vim-pdf'
 "Plug 'xolox/vim-session'
 "Plug 'xolox/vim-misc' " vim-session dep
+" Plug 'FittenTech/fittencode.vim'
 
 " Dependencies
 " Plug 'MarcWeber/vim-addon-mw-utils'
