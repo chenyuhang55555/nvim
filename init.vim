@@ -1656,29 +1656,67 @@ nnoremap <silent> " :<c-u>WhichKey '"'<CR>
 
 
 " ===
+" === ClaudeCode Plugin Configuration
+" ===
+if g:nvim_plugins_installation_completed == 1
+lua <<EOF
+-- Configure snacks.nvim (required dependency)
+require("snacks").setup({
+  bigfile = { enabled = true },
+  notifier = { enabled = true },
+  quickfile = { enabled = true },
+  words = { enabled = true },
+})
+
+-- Configure claudecode.nvim
+require("claudecode").setup({
+  -- Terminal Configuration
+  terminal = {
+    split_side = "right",        -- Split on the right side
+    split_width_percentage = 0.5, -- 50% width
+    provider = "auto",            -- Auto-detect terminal provider
+    auto_close = false,           -- Don't auto-close terminal
+  },
+
+  -- Send/Focus Behavior
+  focus_after_send = false,      -- Don't focus terminal after sending
+
+  -- Selection Tracking
+  track_selection = true,
+
+  -- Diff Integration
+  diff_opts = {
+    auto_close_on_accept = true,
+    vertical_split = true,
+    open_in_current_tab = true,
+    keep_terminal_focus = false,
+  },
+})
+EOF
+endif
+
+" ===
 " === ClaudeCode
 " ===
-" Define user commands for Claude Code CLI integration
-command! -nargs=* -complete=file ClaudeCode terminal claude <args>
-command! ClaudeCodeFocus terminal claude --focus
-command! ClaudeCodeSelectModel terminal claude --model
-command! -nargs=* -complete=file ClaudeCodeAdd terminal claude --add <args>
-command! -range ClaudeCodeSend <line1>,<line2>w !claude --add -
-command! ClaudeCodeDiffAccept terminal claude --diff-accept
-command! ClaudeCodeDiffDeny terminal claude --diff-deny
-command! -nargs=* ClaudeCodeTreeAdd terminal claude --add <args>
-
-" AI/Claude Code mappings
-nnoremap <silent> <LEADER>ac <cmd>botright vertical split +terminal\ claude<cr>
+" AI/Claude Code keymaps (configured via claudecode.nvim plugin)
+" Main toggle
+nnoremap <silent> <LEADER>ac <cmd>ClaudeCode<cr>
+" Smart focus/toggle
 nnoremap <silent> <LEADER>af <cmd>ClaudeCodeFocus<cr>
+" Resume conversation
 nnoremap <silent> <LEADER>ar <cmd>ClaudeCode --resume<cr>
+" Continue conversation
 nnoremap <silent> <LEADER>aC <cmd>ClaudeCode --continue<cr>
+" Select Claude model
 nnoremap <silent> <LEADER>am <cmd>ClaudeCodeSelectModel<cr>
+" Add current file to context
 nnoremap <silent> <LEADER>ab <cmd>ClaudeCodeAdd %<cr>
+" Send selected text to Claude (visual mode)
 vnoremap <silent> <LEADER>as <cmd>ClaudeCodeSend<cr>
 " Diff management
 nnoremap <silent> <LEADER>aa <cmd>ClaudeCodeDiffAccept<cr>
 nnoremap <silent> <LEADER>ad <cmd>ClaudeCodeDiffDeny<cr>
+
 " File tree integration (NvimTree, neo-tree, oil, minifiles, netrw)
 augroup ClaudeCodeFileTree
   autocmd!
