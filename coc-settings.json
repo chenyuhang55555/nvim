@@ -242,5 +242,6 @@
 				}
 			}
 		}
-	}
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }

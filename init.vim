@@ -402,6 +402,10 @@ Plug 'ibhagwan/fzf-lua'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
+" Claude Code AI Assistant
+Plug 'folke/snacks.nvim'
+Plug 'coder/claudecode.nvim'
+
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -574,6 +578,8 @@ Plug 'luochen1990/rainbow'
 Plug 'mg979/vim-xtabline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'wincent/terminus'
+Plug 'folke/tokyonight.nvim'
+Plug 'rebelot/kanagawa.nvim'
 
 " Other useful utilities
 Plug 'lambdalisue/suda.vim' " do stuff like :sudowrite
@@ -609,7 +615,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:one_allow_italics = 1
 
 "color dracula
-colorscheme one-nvim
+colorscheme kanagawa-wave
 "color highlite
 "color deus
 "color gruvbox
@@ -769,6 +775,15 @@ let g:snips_author="JC"
 " Use <leader>x for convert visual selected code to snippet
 "xmap <leader>x  <Plug>(coc-convert-snippet)
 
+" Safety wrapper to prevent Semshi BufWipeout errors
+augroup semshi_safety
+  autocmd BufWipeout * silent! call SemshiBufWipeout()
+augroup END
+
+augroup python_semshi
+  autocmd!
+  autocmd FileType python Semshi enable
+augroup END
 " autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 "
 " This funcionality is replaced with both python formatter and
@@ -1634,6 +1649,27 @@ augroup END
 let g:mapleader = "\<Space>"
 nnoremap <silent> <LEADER> :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> " :<c-u>WhichKey '"'<CR>
+
+
+" ===
+" === ClaudeCode
+" ===
+" AI/Claude Code mappings
+nnoremap <silent> <LEADER>ac <cmd>ClaudeCode<cr>
+nnoremap <silent> <LEADER>af <cmd>ClaudeCodeFocus<cr>
+nnoremap <silent> <LEADER>ar <cmd>ClaudeCode --resume<cr>
+nnoremap <silent> <LEADER>aC <cmd>ClaudeCode --continue<cr>
+nnoremap <silent> <LEADER>am <cmd>ClaudeCodeSelectModel<cr>
+nnoremap <silent> <LEADER>ab <cmd>ClaudeCodeAdd %<cr>
+vnoremap <silent> <LEADER>as <cmd>ClaudeCodeSend<cr>
+" Diff management
+nnoremap <silent> <LEADER>aa <cmd>ClaudeCodeDiffAccept<cr>
+nnoremap <silent> <LEADER>ad <cmd>ClaudeCodeDiffDeny<cr>
+" File tree integration (NvimTree, neo-tree, oil, minifiles, netrw)
+augroup ClaudeCodeFileTree
+  autocmd!
+  autocmd FileType NvimTree,neo-tree,oil,minifiles,netrw nnoremap <buffer> <silent> <LEADER>as <cmd>ClaudeCodeTreeAdd<cr>
+augroup END
 
 " ===================== End of Plugin Settings =====================
 
