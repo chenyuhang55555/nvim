@@ -124,6 +124,10 @@ let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
 tnoremap <C-N> <C-\><C-N>
 tnoremap <C-O> <C-\><C-N><C-O>
+" Exit terminal to normal mode
+tnoremap <Esc><Esc> <C-\><C-N>
+" Exit terminal and switch to previous window
+tnoremap <C-q> <C-\><C-N><C-w>p
 
 " ===
 " === Basic Mappings
@@ -749,8 +753,8 @@ endfunction
 nmap <leader>qf  <Plug>(coc-fix-current)
 " Run the Code Lens action on the current line.
 nmap <leader>cl  <Plug>(coc-codelens-action)
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+" xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+" nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 " coctodolist
 " nnoremap <leader>tn :CocCommand todolist.create<CR>
 " nnoremap <leader>tl :CocList todolist<CR>
@@ -1654,8 +1658,18 @@ nnoremap <silent> " :<c-u>WhichKey '"'<CR>
 " ===
 " === ClaudeCode
 " ===
+" Define user commands for Claude Code CLI integration
+command! -nargs=* -complete=file ClaudeCode terminal claude <args>
+command! ClaudeCodeFocus terminal claude --focus
+command! ClaudeCodeSelectModel terminal claude --model
+command! -nargs=* -complete=file ClaudeCodeAdd terminal claude --add <args>
+command! -range ClaudeCodeSend <line1>,<line2>w !claude --add -
+command! ClaudeCodeDiffAccept terminal claude --diff-accept
+command! ClaudeCodeDiffDeny terminal claude --diff-deny
+command! -nargs=* ClaudeCodeTreeAdd terminal claude --add <args>
+
 " AI/Claude Code mappings
-nnoremap <silent> <LEADER>ac <cmd>ClaudeCode<cr>
+nnoremap <silent> <LEADER>ac <cmd>botright vertical split +terminal\ claude<cr>
 nnoremap <silent> <LEADER>af <cmd>ClaudeCodeFocus<cr>
 nnoremap <silent> <LEADER>ar <cmd>ClaudeCode --resume<cr>
 nnoremap <silent> <LEADER>aC <cmd>ClaudeCode --continue<cr>
